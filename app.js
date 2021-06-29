@@ -2,7 +2,7 @@
 const reviews = [
   {
     id: 1,
-    name: "susan smith",
+    name: "Amanda paul",
     job: "web developer",
     img:
       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg",
@@ -11,7 +11,7 @@ const reviews = [
   },
   {
     id: 2,
-    name: "anna johnson",
+    name: "kamaa johnson",
     job: "web designer",
     img:
       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883409/person-2_np9x5l.jpg",
@@ -20,7 +20,7 @@ const reviews = [
   },
   {
     id: 3,
-    name: "peter jones",
+    name: "Jay jones",
     job: "intern",
     img:
       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
@@ -29,7 +29,7 @@ const reviews = [
   },
   {
     id: 4,
-    name: "bill anderson",
+    name: "Isaac walter",
     job: "the boss",
     img:
       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883423/person-4_t9nxjt.jpg",
@@ -43,6 +43,7 @@ const img = document.getElementById("person-img");
 const author = document.getElementById("author");
 const job = document.getElementById("job");
 const info = document.getElementById("info");
+
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 const randomBtn = document.querySelector(".random-btn");
@@ -51,19 +52,34 @@ const randomBtn = document.querySelector(".random-btn");
 let myItem = 0;
 // this part is where i loaded the first item
 window.addEventListener("DOMContentLoaded", function(){
-  showEditor(myItem)
+  showEditor(myItem);
 });
 
 function showEditor(person){
   const item = reviews[person];
-  img.src =item.img;
+  img.src = item.img;
   author.textContent = item.name;
   job.textContent = item.job;
   info.textContent = item.text;
 }
-
+// next btn
 nextBtn.addEventListener("click", function(){
   myItem++;
-  if(myItem>reviews.length -1)
+  if(myItem > reviews.length -1){
+    myItem = 0;
+  }
+  showEditor(myItem);
+});
+// previous btn
+prevBtn.addEventListener("click", function(){
+  myItem--;
+  if(myItem < 0){
+    myItem = reviews.length -1;
+  }
+  showEditor(myItem);
+});
+
+randomBtn.addEventListener("click", function(){
+  myItem= Math.floor(Math.random() * reviews.length); 
   showEditor(myItem);
 })
